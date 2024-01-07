@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- final Registration Form -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="registrationstyle.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Registration Form
+            </h1>
+            <div class="input-box">
+                <!-- <p class="input-label" id="fullNameError">Enter fullname</p>-->
+                <input id="fullName" type="text" pattern="[A-Z a-z]+" title="Please enter a valid name using only alphabetic characters" placeholder="FullName" required />
+            </div>
+<p id="fullNameError" class="error-label">
+            <div class="input-box" id="email1">
+              <input id="email" type="email" placeholder=" Email" title="Please enter a valid email address" required />
+            </div>
+             <p class="input-label" id="emailError"></p>
+            <div class="input-box" id="email1">
+	    <input id="password" type="email" placeholder="Password" title="password must be 6 characters" required />
+            </div>
+	   <p class="input-label" id="passwordError">
+<div class="input-box">
+              <input id="phoneNumber" type="tel" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="Phone number" required />
+            </div>
+            <p class="input-label" id="phoneError"></p>
+            <div class="input-box">
+                <input id="address" type="text" placeholder="Address" required />
+            </div>
+          
+            <button type="submit" onclick="validateForm()" class="btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+          const fullName = document.getElementById('fullName').value;
+          const email = document.getElementById('email').value;
+const password = document.getElementById("password").value;
+          const phone = document.getElementById('phoneNumber').value;
+          const emailError = document.getElementById('emailError');
+          const phoneError = document.getElementById('phoneError');
+          const fullNameError = document.getElementById("fullNameError")
+
+
+           //const fullNameRegex = /^[a-z A-Z][a-z A-Z\\s]+$/;
+           //if(!fullName.match(fullNameRegex)){
+           //fullNameError.innerText = 'Please enter a valid name using only alphabetic characters';
+           //fullNameError.style.color = 'red'
+           //fullNameError.style.fontWeight=500
+           //}else{
+             //fullNameError.innerHTML = 'Enter FullName';
+            //fullNameError.style.color = 'white'
+          //}
+          const fullNameRegex = "[A-Z a-z]+";
+        if (!fullName.match(fullNameRegex)) {   
+          fullNameError.innerText = 'Please enter a valid name using only alphabetic characters';
+          fullNameError.style.color = "red";
+        } else {
+          fullNameError.innerHTML = "";
+        }
+          
+          
+          // Email validation
+         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email.match(emailRegex)) {
+            emailError.innerText = 'Please enter a valid email address.';
+            emailError.style.color="red"
+            emailError.style.fontWeight=500
+          } else {
+            emailError.innerText = 'Enter Email address';
+            emailError.style.color="white"
+            
+          }
+const passwordRegex = /^.{6,}$/;
+        if (!password.match(passwordRegex)) {
+          passwordError.innerText = "Password must be at least 6 characters ";
+          passwordError.style.color = "red"
+          passwordError.style.fontWeight=500;
+
+        } else {
+          passwordError.innerHTML = "";
+        }
+          
+          // Phone number validation (simple length check)
+          if (phone.length !== 10) {
+            phoneError.innerText = 'Please enter a 10-digit phone number.';
+            phoneError.style.color = "red"
+            phoneError.style.fontWeight=500
+          } else {
+            phoneError.innerText = 'Enter phone number';
+            phoneError.style.color = "white"
+          }
+    
+          return true;
+        }
+      </script>
+</body>
+
+</html>

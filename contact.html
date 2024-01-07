@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login form</title>
+    <link rel="stylesheet" href="loginstyle.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input
+          type=""
+          id="username"
+          placeholder="Username"
+          pattern="[a-zA-Z0-9]+[._]?[a-zA-Z0-9]+"
+          required
+          />
+        </div>
+        <p id="usernameError" class="error-label"></p>
+        <div class="input-box">
+          <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          required
+          />
+        </div>
+        <p id="passwordError" class="error-label"></p>
+        <div id="user-type">
+          <label for="userType">Select User type:</label>
+          <select id="userType" name="userType">
+            <option value="Admin">Admin</option>
+            <option value="Customer">Customer</option>
+            <option value="Admin">Tiffinwala</option>
+            <option value="Customer">Deliveryman</option>
+          </select>
+        </div>
+        <div class="remember-forgot">
+          <label> <input type="checkbox" />Remember me </label>
+          <a href="#">Forgot password ?</a>
+        </div>
+        <button type="submit" class="btn" onclick="valildateForm()">
+          Login
+        </button>
+
+        <div class="register-link">
+          <p>Don't have an account?<a href="registration.html">Register</a></p>
+        </div>
+      </form>
+    </div>
+    <script>
+      function valildateForm() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+
+        const usernameRegex = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/;
+        if (!username.match(usernameRegex)) {   
+          usernameError.innerText = "Enter valid username";
+          usernameError.style.color = "red";
+        } else {
+          usernameError.innerHTML = "";
+        }
+
+        const passwordRegex = /^.{6,}$/;
+        if (!password.match(passwordRegex)) {
+          passwordError.innerText = "Password must be at least 6 characters ";
+          passwordError.style.color = "red"
+
+        } else {
+          passwordError.innerHTML = "";
+        }
+      }
+    </script>
+  </body>
+</html>

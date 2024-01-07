@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- final Registration Form -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="tiffinwalastyle.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Tiffinwala Registration form
+            </h1>
+            <div class="input-box">
+                <input id="Tw_name" type="text" pattern="[A-Z a-z]+" title="Please enter a valid name using only alphabetic characters" placeholder="Tiffinwala Name" required />
+            </div>
+<p id="twNameError" class="error-label">
+            <div class="input-box" id="email1">
+              <input id="email" type="email" placeholder=" Email" title="Please enter a valid email address" required />
+            </div>
+            <p class="input-label" id="emailError"></p>
+            <div class="input-box" id="email1">
+              <input id="password" type="email" placeholder="Password" title="password must be 6 characters" required />
+            </div>
+            <p id="passwordError" class="input-label"></p>
+            <div class="input-box">
+              <input id="phoneNumber" type="tel" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="Contact Number" required />
+            </div>
+            <p class="input-label" id="phoneError"></p>
+           <div id="documentContainer">
+            <p class="documentText">Document</p>
+            <div>
+
+              <input type="file" id="file"/>
+            </div>
+           </div>
+            <button type="submit" onclick="validateForm()" class="btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+	  const twName = document.getElementById('Tw_name').value;
+          const email = document.getElementById('email').value;
+          const password = document.getElementById("password").value;
+          const phone = document.getElementById('phoneNumber').value;
+          const emailError = document.getElementById('emailError');
+          const phoneError = document.getElementById('phoneError');
+          const twNameError = document.getElementById("twNameError")
+
+
+          const twNameRegex = "[A-Z a-z]+";
+        if (!twName.match(twNameRegex)) {   
+          twNameError.innerText = 'Please enter a valid name using only alphabetic characters';
+          twNameError.style.color = "red";
+        } else {
+          twNameError.innerHTML = "";
+        }
+
+          
+          
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email.match(emailRegex)) {
+            emailError.innerText = 'Please enter a valid email address.';
+            emailError.style.color="red"
+            emailError.style.fontWeight=500
+          } else {
+            emailError.innerText = 'Enter Email address';
+            emailError.style.color="white"
+            
+          }
+
+          const passwordRegex = /^.{6,}$/;
+        if (!password.match(passwordRegex)) {
+          passwordError.innerText = "Password must be at least 6 characters ";
+          passwordError.style.color = "red"
+          passwordError.style.fontWeight=500;
+
+        } else {
+          passwordError.innerHTML = "";
+        }
+          
+          // Phone number validation (simple length check)
+          if (phone.length !== 10) {
+            phoneError.innerText = 'Please enter a 10-digit phone number.';
+            phoneError.style.color = "red"
+            phoneError.style.fontWeight=500
+          } else {
+            phoneError.innerText = 'Enter phone number';
+            phoneError.style.color = "white"
+          }
+    
+          return true;
+        }
+      </script>
+</body>
+
+</html>
